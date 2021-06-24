@@ -8,7 +8,7 @@ const rp = require('request-promise')
 const download = require('download')
 
 // 京东cookie
-const cookie = process.env.JD_COOKIE
+const cookie = process.env.JD_DUAL_COOKIE
 
 
 const dual_cookie = process.env.JD_DUAL_COOKIE
