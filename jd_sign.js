@@ -9,6 +9,10 @@ const download = require('download')
 
 // 京东cookie
 const cookie = process.env.JD_COOKIE
+
+
+const dual_cookie = process.env.JD_DUAL_COOKIE
+
 // Server酱SCKEY
 const push_key = process.env.PUSH_KEY
 
@@ -44,6 +48,12 @@ Date.prototype.Format = function (fmt) {
 function setupCookie() {
   var js_content = fs.readFileSync(js_path, 'utf8')
   js_content = js_content.replace(/var Key = ''/, `var Key = '${cookie}'`)
+  fs.writeFileSync(js_path, js_content, 'utf8')
+}
+
+function setupDualCookie() {
+  var js_content = fs.readFileSync(js_path, 'utf8')
+  js_content = js_content.replace(/var Key = ''/, `var Key = '${dual_cookie}'`)
   fs.writeFileSync(js_path, js_content, 'utf8')
 }
 
@@ -97,6 +107,9 @@ function main() {
     // 2、替换cookie
     setupCookie()
     // 3、执行脚本
+    exec(`node '${js_path}' >> '${result_path}'`);
+    
+    setupDualCookie();
     exec(`node '${js_path}' >> '${result_path}'`);
     // 4、发送推送
     sendNotificationIfNeed() 
