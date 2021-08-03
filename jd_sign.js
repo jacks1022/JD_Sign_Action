@@ -78,7 +78,7 @@ function sendNotificationIfNeed() {
   let SCKEY = push_key.replace(/[\r\n]/g,"")
 
   const options ={
-    uri:  `https://sctapi.ftqq.com/${SCKEY}.send`,
+    uri:  `https://sc.ftqq.com/${SCKEY}.send`,
     form: { text, desp },
     json: true,
     method: 'POST'
@@ -122,3 +122,4 @@ function main() {
 }
 
 main()
+
